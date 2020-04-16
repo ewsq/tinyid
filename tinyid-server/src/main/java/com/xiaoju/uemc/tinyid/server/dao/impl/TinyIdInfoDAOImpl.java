@@ -40,9 +40,13 @@ public class TinyIdInfoDAOImpl implements TinyIdInfoDAO {
         return jdbcTemplate.update(sql, newMaxId, id, oldMaxId, version, bizType);
     }
 
+    @Override
+    public int insertBizType(String bizType) {
+        String sql = "INSERT INTO tiny_id_info(biz_type,step,delta) VALUES (?,100000,1)";
+        return jdbcTemplate.update(sql,bizType);
+    }
 
     public static class TinyIdInfoRowMapper implements RowMapper<TinyIdInfo> {
-
         @Override
         public TinyIdInfo mapRow(ResultSet resultSet, int i) throws SQLException {
             TinyIdInfo tinyIdInfo = new TinyIdInfo();

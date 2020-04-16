@@ -23,4 +23,7 @@ public interface TinyIdInfoDAO {
      * @return
      */
     int updateMaxId(Long id, Long newMaxId, Long oldMaxId, Long version, String bizType);
+
+
+    int insertBizType(String bizType);
 }

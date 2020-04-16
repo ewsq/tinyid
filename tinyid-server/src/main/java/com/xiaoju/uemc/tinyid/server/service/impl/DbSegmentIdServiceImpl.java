@@ -38,7 +38,12 @@ public class DbSegmentIdServiceImpl implements SegmentIdService {
         // 获取nextTinyId的时候，有可能存在version冲突，需要重试
         for (int i = 0; i < Constants.RETRY; i++) {
             TinyIdInfo tinyIdInfo = tinyIdInfoDAO.queryByBizType(bizType);
+            // wsq 如果在tiny_id_info不存在则插入，这样只需要保证在分配业务ID时在tiny_id_token授权分配就可以了
             if (tinyIdInfo == null) {
+                tinyIdInfoDAO.insertBizType(bizType);
+                tinyIdInfo = tinyIdInfoDAO.queryByBizType(bizType);
+            }
+            if(tinyIdInfo == null){
                 throw new TinyIdSysException("can not find biztype:" + bizType);
             }
             Long newMaxId = tinyIdInfo.getMaxId() + tinyIdInfo.getStep();
