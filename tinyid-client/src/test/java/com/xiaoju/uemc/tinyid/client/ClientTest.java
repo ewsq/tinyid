@@ -19,8 +19,8 @@ public class ClientTest {
 */
 
         //for (int i = 0; i < 100; i++) {
-            Long id = TinyId.nextId("test05");
-            System.out.println("current id is: " + id);
+            //Long id = TinyId.nextId("test05");
+            //System.out.println("current id is: " + id);
         //}
     }
 }
