@@ -11,7 +11,7 @@ module=tinyid-server
 env=$1
 
 if [ -z "$env" ]; then
-    env='online'
+    env='prod'
 fi
 
 echo "build $env begin"
