@@ -44,7 +44,7 @@ cd $JARPATH
 case "$1" in
 
   start)
-    nohup java -Xmx128m -jar $JARPATH/$JARNAME.jar 2>&1 | /usr/sbin/cronolog ./logs/nohup_%Y%m%d.log &
+    nohup java -Xmx128m -jar $JARPATH/$JARNAME.jar 2>&1 | $CRONOLOG_PATH ./logs/nohup_%Y%m%d.log &
     echo $[$!-1] > $JARPATH/$JARNAME.pid
     ;;
 
